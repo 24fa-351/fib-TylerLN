@@ -22,6 +22,7 @@ int FibRecursive(int n) {
    } else if (n == 2) {
       return 1;
    } else {
+      
       return (FibRecursive(n-1) + FibRecursive(n-2));
    }
 }
@@ -33,13 +34,13 @@ int main(int argc, char *argv[]) {
    fscanf(text_file, "%d", &file_value);
    fclose(text_file);
 
-   int total = value + file_value;
+   int N = value + file_value;
 
    if (argv[2][0] == 'i') {
-      int result = FibIterative(total);
+      int result = FibIterative(N);
       printf("%d", result);
    } else if (argv[2][0] == 'r') {
-      int result = FibRecursive(total);
+      int result = FibRecursive(N);
       printf("%d", result);
    }
    return 0;
