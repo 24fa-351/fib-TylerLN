@@ -1,59 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define ARRAY_SIZE 100
 
-unsigned long long int memo_array[ARRAY_SIZE];
-
-unsigned long long int fib_i_wrapper(int n) {
-  if (memo_array[n] != 0) {
-    return memo_array[n];
-  }
+int FibIterative(int n) {
   if (n == 1) {
     return 0;
   } else if (n == 2) {
     return 1;
   }
-  unsigned long long int first = 0, second = 1, next_value;
-  for (int i = 3; i <= n; i++) {
+  int first = 0;
+  int second = 1;
+  int next_value;
+  for (int ix = 3; ix <= n; ix++) {
     next_value = first + second;
     first = second;
     second = next_value;
   }
-  memo_array[n] = second;
   return second;
 }
 
-unsigned long long int fib_r_wrapper(int n) {
-  if (memo_array[n] != 0) {
-    return memo_array[n];
-  }
+int FibRecursive(int n) {
   if (n == 1) {
     return 0;
   } else if (n == 2) {
     return 1;
+  } else {
+    return (FibRecursive(n - 1) + FibRecursive(n - 2));
   }
-  memo_array[n] = fib_r_wrapper(n - 1) + fib_r_wrapper(n - 2);
-  return memo_array[n];
 }
 
-unsigned long long int FibIterative(int n) { return fib_i_wrapper(n); }
-unsigned long long int FibRecursive(int n) { return fib_r_wrapper(n); }
-
 int main(int argc, char *argv[]) {
-  int user_input = atoi(argv[1]);
+  int value = atoi(argv[1]);
   FILE *text_file = fopen(argv[3], "r");
   int file_value;
   fscanf(text_file, "%d", &file_value);
   fclose(text_file);
 
-  int N_total = user_input + file_value;
+  int N_total = value + file_value;
 
   if (argv[2][0] == 'i') {
-    unsigned long long int result = fib_i_wrapper(N_total);
-    printf("%llu", result);
+    int result = FibIterative(N_total);
+    printf("%d", result);
   } else if (argv[2][0] == 'r') {
-    unsigned long long int result = fib_r_wrapper(N_total);
-    printf("%llu", result);
+    int result = FibRecursive(N_total);
+    printf("%d", result);
   }
   return 0;
 }
