@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int FibIterative(int fib_index) {
+int fib_iterative(int fib_index) {
   if (fib_index == 1) {
     return 0;
   } else if (fib_index == 2) {
@@ -19,13 +19,13 @@ int FibIterative(int fib_index) {
   return second;
 }
 
-int FibRecursive(int recursive_index) {
+int fib_recursive(int recursive_index) {
   if (recursive_index == 1) {
     return 0;
   } else if (recursive_index == 2) {
     return 1;
   } else {
-    return (FibRecursive(recursive_index - 1) + FibRecursive(recursive_index - 2));
+    return (fib_recursive(recursive_index - 1) + fib_recursive(recursive_index - 2));
   }
 }
 
@@ -45,11 +45,12 @@ int main(int argc, char *argv[]) {
   int N_total = value + file_value;
 
   if (argv[2][0] == 'i') {
-    int result = FibIterative(N_total);
+    int result = fib_iterative(N_total);
     printf("%d", result);
   } else if (argv[2][0] == 'r') {
-    int result = FibRecursive(N_total);
+    int result = fib_recursive(N_total);
     printf("%d", result);
   }
+  
   return 0;
 }
