@@ -1,3 +1,5 @@
 # exectuable file
 *.exe
 *.out
+
+fib.exe
